@@ -7,7 +7,7 @@ sudo apt install nginx -y
 sleep 1s
 sudo systemctl enable nginx
 sudo systemctl start nginx
-sudo sytemctl status nginx
+sudo systemctl status nginx
 sleep 2s
 
 
