@@ -27,6 +27,7 @@ EOL
 echo "COnfig files copied succesfully"
 sleep 1s
 echo "creating link"
+sudo chmod 777 /etc/nginx/sites-available
 sudo ln -s /etc/nginx/sites-available/tindog /etc/nginx/sites-enabled/
 
 echo "LInked susccesfully"
@@ -53,6 +54,7 @@ sleep 1s
 echo "install git"
 sudo apt install git -y
 echo "cloning repo"
+sudo chmod 777 /var/www
 cd /var/www
 pwd
 pwd
@@ -77,7 +79,7 @@ echo "deleted html content"
 sleep 1s
 echo "copying files"
 cd tindog
-sudo cp * ../html
+sudo cp -r * ../html
 cd ~
 echo "**********************************"
 
