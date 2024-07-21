@@ -54,12 +54,22 @@ echo "install git"
 sudo apt install git -y
 echo "cloning repo"
 sudo cd /var/www
+pwd
+pwd
+pwd
 git clone https://github.com/TechNgine/tindog.git
+pwd
+pwd
 pwd
 sleep 3s
 tree tindog
 sleep 3s
-cd html
+sudo cd /var/www/html 
+pwd
+pwd
+pwd
+pwd
+pwd
 sudo rm -rf *
 cd ..
 
