@@ -53,21 +53,21 @@ sleep 1s
 echo "install git"
 sudo apt install git -y
 echo "cloning repo"
-cd /var/www/
+sudo cd /var/www
 git clone https://github.com/TechNgine/tindog.git
 pwd
 sleep 3s
 tree tindog
 sleep 3s
 cd html
-rm -rf *
+sudo rm -rf *
 cd ..
 
 echo "deleted html content"
 sleep 1s
 echo "copying files"
 cd tindog
-cp * ../html
+sudo cp * ../html
 cd ~
 echo "**********************************"
 
