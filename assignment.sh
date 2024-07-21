@@ -1,6 +1,6 @@
 
 #!/bin/bash
-
+sudo apt install tree -y
 # Function to echo and sleep
 function echo_sleep {
     echo "$1"
