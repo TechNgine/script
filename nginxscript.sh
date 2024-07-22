@@ -28,7 +28,13 @@ fi
 sleep 1s
 sudo systemctl enable nginx
 sudo systemctl start nginx
-sudo systemctl status nginx
+# Check NGINX Status
+echo "Checking NGINX status..."
+if systemctl is-active --quiet nginx; then
+    echo "NGINX is running."
+else
+    echo "NGINX is not running. Please check the logs."
+    exit 1
 sleep 2s
 
 echo "Step 2: Configuring nginx.........."
