@@ -1,4 +1,4 @@
-###  List of Script
+#  List of Script
 List of scripts discussed in class
 nginxscript.sh
 assignment.sh
@@ -11,15 +11,15 @@ _chmod +x iscriptname.sh_
 **Run script**
 _./scriptnamesh_
 
-# nginxscript
+### nginxscript
 This script installs nginx
 Setups Nginx and configures nginx
 git clone tinodg website and server it at : localhost
 
-# assignment
+### assignment
 Creates the bank folder as the assignment required
 
-# copy&paste
+### copy&paste
 
 **Instructions**
 
