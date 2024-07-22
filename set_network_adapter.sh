@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Extract VM name from the hostname
-VM_NAME=$(hostname)
+# Prompt the user to enter the VM name
+read -p "Enter the VM name you would love to configure: " VM_NAME
 
 echo "Configuring network adapters for VM: $VM_NAME"
 
