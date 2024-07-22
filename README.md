@@ -1,4 +1,4 @@
-# script
+### ** List of Script**
 List of scripts discussed in class
 nginxscript.sh
 assignment.sh
