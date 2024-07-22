@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo "For Loop Example"
+echo "================"
+
+# A simple for loop to print numbers from 1 to 5
+for i in {1..5}
+do
+    echo "Iteration: $i"
+done
+
+echo "For loop completed!"
+
+
+##!/bin/bash
+
+#echo "For Loop Example (C-style)"
+#echo "=========================="
+
+## A C-style for loop to print numbers from 0 to 4
+#for (( i=0; i<5; i++ ))
+#do
+#    echo "Iteration: $i"
+#done
+
+#echo "For loop completed!"
