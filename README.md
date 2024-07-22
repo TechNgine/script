@@ -30,3 +30,7 @@ Run the Script:
 Reboot the VM: After the script completes, reboot the virtual machine to ensure all changes take effect.
 
 This script handles the installation of required packages, mounts the Guest Additions CD, runs the installer, and cleans up afterward.
+
+### set_network_adapter.sh
+
+By running this script, your VM will be configured with three network adapters: one for internal communication, one for host-only communication, and one for internet access via NAT.
