@@ -34,3 +34,6 @@ This script handles the installation of required packages, mounts the Guest Addi
 ### set_network_adapter.sh
 
 By running this script, your VM will be configured with three network adapters: one for internal communication, one for host-only communication, and one for internet access via NAT.
+_Ensure VirtualBox and VBoxManage are Installed:
+Make sure VirtualBox is installed on your host machine, and VBoxManage is available in your system's PATH. This is usually done during the VirtualBox installation process.
+_
