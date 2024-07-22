@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "While Loop Example"
+echo "=================="
+
+# A simple while loop to print numbers from 1 to 5
+counter=1
+while [ $counter -le 5 ]
+do
+    echo "Iteration: $counter"
+    ((counter++))
+done
+
+echo "While loop completed!"
