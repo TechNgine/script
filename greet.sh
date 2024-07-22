@@ -1,8 +1,10 @@
 #!/bin/bash
+HOUR=$(date +"%H")
 
-echo "good morning,$(whoami)"
-echo "You're currently on the $(hostname) server"
-echo "This server has been online for about  $(uptime)"
-echo "Todays date is  $(date)"
-friend="Yinka is my friend"
-echo "Who is my friend: $friend"
+if [ $HOUR -lt 12 ]; then
+    echo "Good morning!"
+elif [ $HOUR -lt 18 ]; then
+    echo "Good afternoon!"
+else
+    echo "Good evening!"
+fi
