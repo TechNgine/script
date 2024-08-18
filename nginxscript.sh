@@ -1,33 +1,35 @@
 #!/bin/bash
 
+set -e  # Exit immediately if a command exits with a non-zero status
+
 echo "Script started"
-sleep 2s
 
 # Function to check if a package is installed
 is_installed() {
   dpkg -l | grep -q "$1"
 }
+
 # Install tree if not installed
 if ! is_installed tree; then
-  echo "Installing tree"
+  echo "Installing tree..."
   sudo apt install tree -y
 else
-  echo "tree is already installed"
+  echo "Tree is already installed."
 fi
-
 
 # Install nginx if not installed
 if ! is_installed nginx; then
-  echo "Installing Nginx"
+  echo "Installing Nginx..."
   sudo apt update
   sudo apt install nginx -y
 else
-  echo "Nginx is already installed"
+  echo "Nginx is already installed."
 fi
 
-sleep 1s
+# Enable and start Nginx
 sudo systemctl enable nginx
 sudo systemctl start nginx
+
 # Check NGINX Status
 echo "Checking NGINX status..."
 if systemctl is-active --quiet nginx; then
@@ -35,11 +37,12 @@ if systemctl is-active --quiet nginx; then
 else
     echo "NGINX is not running. Please check the logs."
     exit 1
-sleep 2s
+fi
 
-echo "Step 2: Configuring nginx.........."
+# Configure Nginx
+echo "Configuring Nginx..."
 echo "Copying config files to /etc/nginx/sites-available/tindog"
-sudo cat > /etc/nginx/sites-available/tindog <<EOL
+sudo bash -c 'cat > /etc/nginx/sites-available/tindog <<EOL
 server {
   listen 80;
   server_name localhost;
@@ -47,74 +50,51 @@ server {
   root /var/www/tindog;
   index index.html;
 }
-EOL
+EOL'
 
-sleep 3s
-echo "Config files copied successfully"
-sleep 1s
-echo "Creating link"
-sudo ln -s /etc/nginx/sites-available/tindog /etc/nginx/sites-enabled/
+echo "Config files copied successfully."
+echo "Creating symbolic link..."
+sudo ln -sf /etc/nginx/sites-available/tindog /etc/nginx/sites-enabled/
+echo "Linked successfully."
 
-echo "Linked successfully"
-sleep 2s
-
-echo "Verify config file"
+# Verify and reload Nginx configuration
+echo "Verifying Nginx configuration..."
 sudo nginx -t
-
-sleep 1s
-echo "Reloading nginx"
+echo "Reloading Nginx..."
 sudo systemctl reload nginx
-echo "Setup complete"
+echo "Setup complete."
 
-# This part copies from GitHub
+# Clone website content from GitHub
 echo "----------------------------------"
-echo "Step 3: Copy website content"
-echo "***********************************"
-sleep 4s
-echo "..............."
-echo "..........."
-sleep 1s
-
-# Install git if not installed
+echo "Step 3: Copying website content..."
 if ! is_installed git; then
-  echo "Installing Git"
+  echo "Installing Git..."
   sudo apt install git -y
 else
-  echo "Git is already installed"
+  echo "Git is already installed."
 fi
 
-echo "Cloning repo"
+# Ensure the /var/www directory is writable
 sudo chmod 777 /var/www
-cd /var/www
-pwd
-pwd
-pwd
-git clone https://github.com/TechNgine/tindog.git
-pwd
-pwd
-pwd
-sleep 3s
-tree tindog
-sleep 3s
-cd /var/www/html
-pwd
-pwd
-pwd
-pwd
-pwd
-sudo rm -rf *
-cd ..
 
-echo "Deleted html content"
-sleep 1s
-echo "Copying files"
-cd tindog
-sudo cp -r * ../html
-cd ~
-echo "**********************************"
+# Clone the repository into /var/www/tindog
+echo "Cloning repository..."
+if [ -d "/var/www/tindog" ]; then
+  echo "Removing existing tindog directory..."
+  sudo rm -rf /var/www/tindog  # Remove the existing directory if it exists
+fi
 
-echo "Nginx setup is complete"
-echo "Website is hosted at localhost"
+git clone https://github.com/TechNgine/tindog.git /var/www/tindog
+
+# Copy files to the web root
+echo "Copying files to /var/www/html..."
+if [ ! -d "/var/www/html" ]; then
+  echo "Creating /var/www/html directory..."
+  sudo mkdir -p /var/www/html
+fi
+
+sudo cp -r /var/www/tindog/* /var/www/html/
+
+echo "Nginx setup is complete."
+echo "Website is hosted at http://localhost"
 echo "Server is up $(uptime)"
-
-echo "***********************************"
